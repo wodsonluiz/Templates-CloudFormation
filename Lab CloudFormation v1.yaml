@@ -1,0 +1,21 @@
+AWSTemplateFormatVersion: "2010-09-09"
+Resources:
+  ServidorWodLab:
+    Type: AWS::EC2::Instance
+    Properties:
+      InstanceType: t2.micro
+      ImageId: ami-038f1ca1bd58a5790
+      KeyName: KeyPairVirginiaWodLab
+      SubnetId: subnet-66c66900
+      SecurityGroupIds:
+        - !Ref SecurityGroupWodLab
+  SecurityGroupWodLab:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      VpcId: vpc-c5e41fb8
+      GroupDescription: Acesso ao Servidor da Webfor
+      SecurityGroupIngress:
+      - IpProtocol: tcp
+        FromPort: 80
+        ToPort: 80
+        CidrIp: 0.0.0.0/0
